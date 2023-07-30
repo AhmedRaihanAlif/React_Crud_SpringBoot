@@ -10,11 +10,11 @@ export default function EditUser() {
   const [user, setUser] = useState({
     name: "",
     
-    email: "",
-    age: ""
+    email: ""
+    
   });
 
-  const { name,  email,age } = user;
+  const { name,  email } = user;
 
   const onInputChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
@@ -26,12 +26,12 @@ export default function EditUser() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    await axios.put(`http://localhost:8080/api/v1/student/${id}`, user);
+    await axios.put(`http://localhost:5000/api/contacts/${id}`, user);
     navigate("/");
   };
 
   const loadUser = async () => {
-    const result = await axios.get(`http://localhost:8080/api/v1/student/${id}`);
+    const result = await axios.get(`http://localhost:5000/api/contacts/${id}`);
     setUser(result.data);
   };
 
@@ -69,7 +69,7 @@ export default function EditUser() {
                 onChange={(e) => onInputChange(e)}
               />
             </div>
-            <div className="mb-3">
+            {/* <div className="mb-3">
               <label htmlFor="Username" className="form-label">
                 Age
               </label>
@@ -81,7 +81,7 @@ export default function EditUser() {
                 value={age}
                 onChange={(e) => onInputChange(e)}
               />
-            </div>
+            </div> */}
             <button type="submit" className="btn btn-outline-primary">
               Submit
             </button>

@@ -12,19 +12,18 @@ export default function Home() {
   }, []);
 
   const loadUsers = async () => {
-    const result = await axios.get("http://localhost:8080/api/v1/student");
+    const result = await axios.get("http://localhost:5000/api/contacts");
     setUsers(result.data);
   };
 
   const deleteUser = async (id) => {
-    await axios.delete(`http://localhost:8080/api/v1/student/${id}`);
+    await axios.delete(`http://localhost:5000/api/contacts/${id}`);
     loadUsers();
   };
   const [user, setUser] = useState({
     name: "",
     email: "",
-    dob: "",
-    age: ""
+    
   });
 
   return (
@@ -35,10 +34,8 @@ export default function Home() {
             <tr>
               <th scope="col">ID</th>
               <th scope="col">Name</th>
-              
               <th scope="col">Email</th>
-              <th scope="col">Date of Birth</th>
-              <th scope="col">Age</th>
+            
               <th scope="col">Update Action</th>
               <th scope="col">Delete Action</th>
             </tr>
@@ -53,8 +50,7 @@ export default function Home() {
                                 </th>
                             <td>{user.name}</td>
                             <td>{user.email}</td>
-                            <td>{user.dob}</td>
-                            <td>{user.age}</td>
+                     
                             {/* <td>
                             <button
                      className="btn btn-danger mx-2"

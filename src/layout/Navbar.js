@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Button } from './Button';
+import Image from '../assets/Images/remark.png';
 import Dropdown from './Dropdown';
 import './Navbar.css';
 
@@ -30,7 +30,9 @@ function Navbar() {
   return (
     <>
       <nav className='navbar'>
+      
         <Link to='/' className='navbar-logo' onClick={closeMobileMenu}>
+        <img src={Image} alt='img' style={{height:"50px",marginRight:"10px"}}/>
          Remark HB
           <i class='fab fa-firstdraft' />
         </Link>
@@ -59,7 +61,7 @@ function Navbar() {
           </li>
           <li className='nav-item'>
             <Link
-              to='/products'
+              to='/productscard'
               className='nav-links'
               onClick={closeMobileMenu}
             >
@@ -68,14 +70,25 @@ function Navbar() {
           </li>
           <li className='nav-item'>
             <Link
-              to='/contact-us'
+              to='/contactus'
               className='nav-links'
               onClick={closeMobileMenu}
             >
               Contact Us
             </Link>
           </li>
-          <Button/>
+          <li className='nav-item'>
+            <Link
+              to='/adduser'
+              className='nav-links'
+              onClick={closeMobileMenu}
+            >
+              Add User
+            </Link>
+          </li>
+
+       
+         
         </ul>
         
       </nav>

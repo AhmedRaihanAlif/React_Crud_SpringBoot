@@ -2,16 +2,20 @@ import axios from "axios";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-export default function AddUser() {
+export default function LoginApp() {
   let navigate = useNavigate();
 
   const [user, setUser] = useState({
+    id:"",
     name: "",
     email: "",
+    phone:"",
+    role:"",
+    password:""
  
   });
 
-  const { name, email } = user;
+  const { id,name, email,phone,role,password } = user;
 
   const onInputChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
@@ -19,17 +23,30 @@ export default function AddUser() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    await axios.post("http://localhost:5000/api/contacts/", user);
+    await axios.post("http://182.160.114.100:5001/api/v1/create", user);
     navigate("/");
   };
 
   return (
     <div className="container">
       <div className="row">
-        <div className="col-md-6 offset-md-3 border rounded p-4 mt-2 shadow">
-          <h2 className="text-center m-4">Add User</h2>
+        <div className="col-md-6 offset-md-3 border rounded p-4  shadow"style={{marginTop:"100px",marginLeft:"30%"}}  >
+          <h2 className="text-center m-4" >Add User</h2>
 
           <form onSubmit={(e) => onSubmit(e)}>
+          <div className="mb-3">
+              <label htmlFor="Name" className="form-label">
+                Id
+              </label>
+              <input
+                type={"text"}
+                className="form-control"
+                placeholder="Enter your name"
+                name="id"
+                value={id}
+                onChange={(e) => onInputChange(e)}
+              />
+            </div>
             <div className="mb-3">
               <label htmlFor="Name" className="form-label">
                 Name
@@ -83,6 +100,45 @@ export default function AddUser() {
                 onChange={(e) => onInputChange(e)}
               />
             </div> */}
+             <div className="mb-3">
+              <label htmlFor="Name" className="form-label">
+                Phone
+              </label>
+              <input
+                type={"text"}
+                className="form-control"
+                placeholder="Enter your name"
+                name="phone"
+                value={phone}
+                onChange={(e) => onInputChange(e)}
+              />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="Name" className="form-label">
+                Role
+              </label>
+              <input
+                type={"text"}
+                className="form-control"
+                placeholder="Enter your name"
+                name="role"
+                value={role}
+                onChange={(e) => onInputChange(e)}
+              />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="Name" className="form-label">
+                Password
+              </label>
+              <input
+                type={"text"}
+                className="form-control"
+                placeholder="Enter your name"
+                name="password"
+                value={password}
+                onChange={(e) => onInputChange(e)}
+              />
+            </div>
             <button type="submit" className="btn btn-outline-primary">
               Submit
             </button>

@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-export default function AddUser() {
+export default function Contactus() {
   let navigate = useNavigate();
 
   const [user, setUser] = useState({
@@ -27,7 +27,7 @@ export default function AddUser() {
     <div className="container">
       <div className="row">
         <div className="col-md-6 offset-md-3 border rounded p-4 mt-2 shadow">
-          <h2 className="text-center m-4">Add User</h2>
+          <h2 className="text-center m-4">Contact us</h2>
 
           <form onSubmit={(e) => onSubmit(e)}>
             <div className="mb-3">
@@ -55,6 +55,20 @@ export default function AddUser() {
                 name="email"
                 value={email}
                 onChange={(e) => onInputChange(e)}
+              />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="Email" className="form-label">
+                Message
+              </label>
+              <input  style={{ height:'300px'}}
+                type={"text"}
+                className="form-control"
+                placeholder="Enter your e-mail address"
+                // name="email"
+                // value={email}
+                onChange={(e) => onInputChange(e)}
+               
               />
             </div>
             {/* <div className="mb-3">

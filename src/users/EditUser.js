@@ -14,7 +14,7 @@ export default function EditUser() {
     
   });
 
-  const { name,  email } = user;
+ const { name,  email } = user;
 
   const onInputChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
@@ -44,7 +44,7 @@ export default function EditUser() {
           <form onSubmit={(e) => onSubmit(e)}>
             <div className="mb-3">
               <label htmlFor="Name" className="form-label">
-                Name
+                User ID
               </label>
               <input
                 type={"text"}

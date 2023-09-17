@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-
+import Sidebar from "./Sidebar";
 export default function LoginApp() {
   let navigate = useNavigate();
 
@@ -28,9 +28,11 @@ export default function LoginApp() {
   };
 
   return (
-    <div className="container">
+    <div style={{display:"flex",flexDirection:"row"}}>
+      <Sidebar/>
+    <div className="container"  >
       <div className="row">
-        <div className="col-md-6 offset-md-3 border rounded p-4  shadow"style={{marginTop:"100px",marginLeft:"30%"}}  >
+        <div className="col-md-6 offset-md-2 border rounded p-4  shadow"style={{width:"700px"}}  >
           <h2 className="text-center m-4" >Add User</h2>
 
           <form onSubmit={(e) => onSubmit(e)}>
@@ -148,6 +150,7 @@ export default function LoginApp() {
           </form>
         </div>
       </div>
+    </div>
     </div>
   );
 }

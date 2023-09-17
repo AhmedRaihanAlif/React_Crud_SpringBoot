@@ -1,15 +1,17 @@
 .sidebar {
   flex: 1;
-  height: calc(100vh - 50px);
-  background-color: rgb(255, 255, 255);
-  position: fixed;
-  top: 50px;
-  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  position: static;
+  top: 0px;
 }
 
 .sidebarWrapper {
   padding: 20px;
   color: #555;
+  width: 190px;
 }
 
 .sidebarMenu {

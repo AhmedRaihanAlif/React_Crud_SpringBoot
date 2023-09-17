@@ -1,0 +1,17 @@
+.sales {
+  height: 50%;
+  width: 80%;
+  margin-bottom: 15%;
+  margin-left: 10%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.saleshome {
+  margin-top: 0%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}

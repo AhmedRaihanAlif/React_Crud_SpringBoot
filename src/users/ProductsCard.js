@@ -13,6 +13,7 @@ import {
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import '../layout/ProductsCard.css';
+import Sidebar from "../pages/Sidebar";
 import '../users/Re.js';
 import Users from "../users/Re.js";
 export default function ProductsCard() {
@@ -36,10 +37,12 @@ const [def,setDef]=useState([]);
   
   return (
    
-
-   
-    <MDBCard className="d-flex flex-row "  id='mdb1' style={{width:"80%",marginLeft:"20%"}} >
-              
+<div style={{display:"block"}}>
+   <div id="hola" style={{display:"flex"}} >
+    <Sidebar />
+    <div style={{display:"static"}}>
+    <MDBCard  id='mdb1'  >
+             
       <div id='i1' >
       <MDBRipple  rippleColor='light' rippleTag='div' className='bg-image hover-overlay'>
         <MDBCardImage src='https://us.remarkhb.com/wp-content/uploads/2022/04/herlan.png' fluid alt='...' />
@@ -249,7 +252,8 @@ Some quick example text to build on the card title and make up the bulk of the c
       
       
     </MDBCard>
-
-
+    </div>
+    </div>
+    </div>
       );
 }

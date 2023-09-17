@@ -6,12 +6,11 @@
   );
   height: 100px;
   width: 100%;
-  position: fixed;
+  position: static;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 1.2rem;
-  margin-bottom: 200px;
 }
 
 .navbar-logo {

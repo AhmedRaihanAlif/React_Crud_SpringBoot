@@ -5,24 +5,27 @@ import Navbar from "./layout/Navbar";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import LoginApp from "./pages/LoginApp";
-import Sidebar from "./pages/Sidebar";
-import AddUser from "./users/AddUser";
+import SalesHome from "./pages/SalesHome";
+import ShowSalesEmployee from "./pages/ShowSalesEmployee";
 import Contactus from "./users/Contactus";
 import EditUser from "./users/EditUser";
-import ViewUser from "./users/ViewUser";
-
 import ProductsCard from "./users/ProductsCard";
-
+import UserLogin from "./users/UserLogin";
+import UserSignup from "./users/UserSignup";
+import ViewUser from "./users/ViewUser";
 function App() {
   return (
     <div className="App">
       <Router>
         <Navbar />
-        <Sidebar />
+        
         <Routes>
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/" element={<Home />} />
-          <Route exact path="/adduser" element={<AddUser />} />
+          <Route exact path="/usersignup" element={<UserSignup />} />
+          <Route exact path="/userlogin" element={<UserLogin/>} />
+          <Route exact path="/saleshome" element={<SalesHome />} />
+          <Route exact path="/showsalesemployee" element={<ShowSalesEmployee />} />
           <Route exact path="/loginapp" element={<LoginApp />} />
           <Route exact path="/contactus" element={<Contactus />} />
           <Route exact path="/productscard" element={<ProductsCard />} />

@@ -2,11 +2,11 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import { GetCookie } from "./Cookiess";
 import { SearchBar } from "./SearchBox";
 import { SearchResultsList } from "./SearchResult";
 import Sidebar from "./Sidebar";
-
-export default function Home() {
+export default function ShowSalesEmployee() {
   const [results, setResults] = useState([]);
   const [users, setUsers] = useState([]);
 
@@ -16,8 +16,15 @@ export default function Home() {
     loadUsers();
   }, []);
 
+  const getcookie=GetCookie();
+    const headers = {
+      "Content-Type" : 'application/json',
+      Authorization: `Bearer ${getcookie}`,
+    };
   const loadUsers = async () => {
-    const result = await axios.get("http://localhost:5000/api/contacts/");
+    const result = await axios.get("http://localhost:5000/api/contacts/private/getsales",{headers});
+    console.log("After passing header");
+    console.log(result);
     setUsers(result.data);
   };
 
@@ -27,8 +34,8 @@ export default function Home() {
   };
   const [user, setUser] = useState({
     user_id: "",
-    password:"",
-    email: ""
+   user_name:""
+    
     
   });
 
@@ -51,8 +58,8 @@ export default function Home() {
             <tr>
               <th scope="col">Serial</th>
               <th scope="col">User ID</th>
-              <th scope="col">Password</th>
-              <th scope="col">Email</th>
+              <th scope="col">User Name</th>
+              
             
               <th scope="col">Update Action</th>
               <th scope="col">Delete Action</th>
@@ -67,8 +74,8 @@ export default function Home() {
 
                                 </th>
                             <td>{user.user_id}</td>
-                            <td>{user.password}</td>
-                            <td>{user.email}</td>
+                            <td>{user.user_name}</td>
+                        
                      
                             {/* <td>
                             <button

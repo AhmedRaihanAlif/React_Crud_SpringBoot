@@ -15,7 +15,10 @@ import { Link } from "react-router-dom";
 import "../layout/Sidebar.css";
 function Sidebar() {
   return (
-    <div className="sidebar" style={{width:'18%'}}>
+  
+
+    
+    <div className="sidebar"  >
       <div className="sidebarWrapper">
         <div className="sidebarMenu">
           <h3 className="sidebarTitle">Dashboard</h3>
@@ -35,7 +38,7 @@ function Sidebar() {
             <Link to="/" className="link">
             <li className="sidebarListItem ">
               <LineStyle className="sidebarIcon" />
-              User
+             Admin User
             </li>
             </Link>
           </ul>
@@ -43,16 +46,41 @@ function Sidebar() {
         <div className="sidebarMenu">
           <h3 className="sidebarTitle">Quick Menu</h3>
           <ul className="sidebarList">
-            <Link to="/loginapp" className="link">
+            <Link to="/saleshome" className="link">
               <li className="sidebarListItem">
                 <PermIdentity className="sidebarIcon" />
-                Add Users
+                Sales 
               </li>
             </Link>
             <Link to="/products" className="link">
               <li className="sidebarListItem">
                 <Storefront className="sidebarIcon" />
-               Add Employee
+               IT 
+              </li>
+            </Link>
+            <li to="/" className="sidebarListItem">
+              <AttachMoney className="sidebarIcon" />
+              HR
+            </li>
+            <li className="sidebarListItem">
+              <BarChart className="sidebarIcon" />
+              Trainer
+            </li>
+          </ul>
+        </div>
+        {/* <div className="sidebarMenu">
+          <h3 className="sidebarTitle">Quick Menu</h3>
+          <ul className="sidebarList">
+            <Link to="/loginapp" className="link">
+              <li className="sidebarListItem">
+                <PermIdentity className="sidebarIcon" />
+                Sales Representative
+              </li>
+            </Link>
+            <Link to="/products" className="link">
+              <li className="sidebarListItem">
+                <Storefront className="sidebarIcon" />
+               IT 
               </li>
             </Link>
             <li to="/" className="sidebarListItem">
@@ -64,7 +92,7 @@ function Sidebar() {
               Reports
             </li>
           </ul>
-        </div>
+        </div> */}
         <div className="sidebarMenu">
           <h3 className="sidebarTitle">Notifications</h3>
           <ul className="sidebarList">
@@ -101,6 +129,7 @@ function Sidebar() {
         </div>
       </div>
     </div>
+
   );
 }
 export default Sidebar;

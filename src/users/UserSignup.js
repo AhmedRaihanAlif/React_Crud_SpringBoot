@@ -11,18 +11,24 @@ import {
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import "../layout/UserSignup.css";
+
+
+
+
 const {GetCookie}=require("../pages/Cookiess");
 function UserSignup() {
   let navigate = useNavigate();
   const [user, setUser] = useState({
     user_id: "",
     user_name: "",
+    user_email:"",
     user_password:"",
     user_role:""
+   
  
   });
 
-  const { user_id, user_name,user_password,user_role } = user;
+  const { user_id, user_name,user_email,user_password,user_role } = user;
 
   const onInputChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
@@ -37,14 +43,24 @@ function UserSignup() {
     'Authorization': 'Bearer ${gf}', // Example authorization header
   };
   const onSubmit = async (e) => {
-    e.preventDefault();
-    await axios.post("http://localhost:5000/api/contacts/usersignup", user, { headers });
-    console.log("Created");
-    navigate("/");
+   e.preventDefault();
+   await axios.post("http://localhost:5000/api/contacts/usersignup", user, { headers });
+   console.log("Pass to formdialog");
+   navigate("/formdialog");
+  };
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
   };
 
+  const handleClose = () => {
+    setOpen(false);
+  };
   return (
-    
+   
+
+      
     <MDBContainer fluid className='p-4'>
 
       <MDBRow>
@@ -80,17 +96,19 @@ function UserSignup() {
                   <MDBInput wrapperClass='mb-4' label='Last name' id='form1' type='text'/>
                 </MDBCol>
               </MDBRow> */}
-   <form onSubmit={(e) => onSubmit(e)}>
+  <form onSubmit={(e) => onSubmit(e)} >
               <MDBInput wrapperClass='mb-4' label='Employee Id' id='form1' type={"text"} name="user_id" value={user_id}  onChange={(e) => onInputChange(e)} placeholder='Enter Unique Employee ID'/>
               <MDBInput wrapperClass='mb-4' label='Employee Name' id='form1' type={"text"} name="user_name" value={user_name}  onChange={(e) => onInputChange(e)}  placeholder='Enter Unique Employee Name'/>
+              <MDBInput wrapperClass='mb-4' label='Employee Email' id='form1' type={"text"} name="user_email" value={user_email}  onChange={(e) => onInputChange(e)}  placeholder='Enter Employee Email'/>
               <MDBInput wrapperClass='mb-4' label='Employee Password' id='form1' type={"text"} name="user_password" value={user_password}  onChange={(e) => onInputChange(e)} placeholder='Enter Employee Password'/>
               <MDBInput wrapperClass='mb-4' label='Employee Role' id='form1' type={"text"} name="user_role" value={user_role}  onChange={(e) => onInputChange(e)} placeholder='Enter Employee Role'/>
               {/* <div className='d-flex justify-content-center mb-4'>
                 <MDBCheckbox name='flexCheck' value='' id='flexCheckDefault' label='Remember me' />
               </div> */}
 
-              <MDBBtn className='w-100 mb-4' type="submit" size='md'>Create Employee</MDBBtn>
-
+              <MDBBtn className='w-100 mb-4' variant="outlined" type="submit"   size='md'>Create Employee</MDBBtn>
+              </form>
+              {/* type="submit" */}
               {/* <div className="text-center">
 
                 <p>or sign up with:</p>
@@ -112,7 +130,7 @@ function UserSignup() {
                 </MDBBtn>
 
               </div> */}
-</form>
+
             </MDBCardBody>
           </MDBCard>
 
@@ -121,6 +139,8 @@ function UserSignup() {
       </MDBRow>
 
     </MDBContainer>
+   
+    
   );
 }
 

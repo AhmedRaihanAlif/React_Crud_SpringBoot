@@ -75,6 +75,7 @@ export default function EditUser() {
               </label>
               <input
                 type={"text"}
+
                 className="form-control"
                 placeholder="Enter your new age"
                 name="age"

@@ -2,6 +2,7 @@ import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import Navbar from "./layout/Navbar";
+import FormDialog from "./pages/FormDialog";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import LoginApp from "./pages/LoginApp";
@@ -31,6 +32,7 @@ function App() {
           <Route exact path="/productscard" element={<ProductsCard />} />
           <Route exact path="/edituser/:id" element={<EditUser />} />
           <Route exact path="/viewuser/:id" element={<ViewUser />} />
+          <Route exact path="/formdialog" element={<FormDialog />} />
         </Routes>
       </Router>
     </div>
@@ -38,3 +40,8 @@ function App() {
 }
 
 export default App;
+
+
+
+
+

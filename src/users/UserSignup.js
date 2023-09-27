@@ -23,6 +23,7 @@ function UserSignup() {
     user_name: "",
     user_email:"",
     user_password:"",
+
     user_role:""
    
  

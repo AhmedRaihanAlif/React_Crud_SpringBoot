@@ -7,8 +7,10 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import LoginApp from "./pages/LoginApp";
 import SalesHome from "./pages/SalesHome";
+import ShowEmployee from "./pages/ShowEmployee";
 import ShowSalesEmployee from "./pages/ShowSalesEmployee";
 import Contactus from "./users/Contactus";
+import EditSalesEmployee from "./users/EditSalesEmployee";
 import EditUser from "./users/EditUser";
 import ProductsCard from "./users/ProductsCard";
 import UserLogin from "./users/UserLogin";
@@ -30,7 +32,9 @@ function App() {
           <Route exact path="/loginapp" element={<LoginApp />} />
           <Route exact path="/contactus" element={<Contactus />} />
           <Route exact path="/productscard" element={<ProductsCard />} />
-          <Route exact path="/edituser/:id" element={<EditUser />} />
+          <Route exact path="/showemployee" element={<ShowEmployee />} />
+          <Route exact path="/editsalesemployee/:user_id" element={<EditSalesEmployee />} />
+          <Route exact path="/edituser/:user_id" element={<EditUser />} />
           <Route exact path="/viewuser/:id" element={<ViewUser />} />
           <Route exact path="/formdialog" element={<FormDialog />} />
         </Routes>

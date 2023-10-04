@@ -2,14 +2,14 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 
-export default function EditUser() {
+export default function EditSalesEmployee() {
   let navigate = useNavigate();
 
   const { user_id } = useParams();
 
   const [user, setUser] = useState({
     id:user_id,
-    email: ""
+    name: ""
     
   });
 
@@ -25,14 +25,14 @@ export default function EditUser() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    await axios.put(`http://localhost:5000/api/contacts/${user_id}`, user);
+    await axios.put(`http://localhost:5000/api/contacts/updatesales/${user_id}`, user);
     navigate("/");
   };
 
   const loadUser = async () => {
     const result = await axios.get(`http://localhost:5000/api/contacts/${user_id}`);
-    console.log("heioioi"+JSON.stringify(result.data[0].email));
-    setUser({ ...user, email: result.data[0].email});
+    console.log("heioioi"+JSON.stringify(result.data[0].name));
+    setUser({ ...user, name: result.data[0].name});
   };
 
   return (
@@ -50,7 +50,7 @@ export default function EditUser() {
                 type={"text"}
                 className="form-control"
                 placeholder="Enter your new name"
-                name="name"
+                name="id"
                 value={user.id}
             
               />
@@ -64,9 +64,9 @@ export default function EditUser() {
                 type={"text"}
                 className="form-control"
                 placeholder="Enter your new e-mail address"
-                name="email"
-                value={user.email}
-                onChange={(e) => setUser({ ...user, email: e.target.value })}
+                name="name"
+                value={user.name}
+                onChange={(e) => setUser({ ...user, name: e.target.value })}
               />
             </div>
             {/* <div className="mb-3">

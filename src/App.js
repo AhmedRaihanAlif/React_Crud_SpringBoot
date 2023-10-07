@@ -6,6 +6,7 @@ import FormDialog from "./pages/FormDialog";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import LoginApp from "./pages/LoginApp";
+import RequisitionForm from "./pages/RequisitionForm";
 import SalesHome from "./pages/SalesHome";
 import ShowEmployee from "./pages/ShowEmployee";
 import ShowSalesEmployee from "./pages/ShowSalesEmployee";
@@ -37,6 +38,7 @@ function App() {
           <Route exact path="/edituser/:user_id" element={<EditUser />} />
           <Route exact path="/viewuser/:id" element={<ViewUser />} />
           <Route exact path="/formdialog" element={<FormDialog />} />
+          <Route exact path="/requisitionform/:user_id" element={<RequisitionForm />} />
         </Routes>
       </Router>
     </div>

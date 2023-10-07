@@ -1,4 +1,3 @@
-
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
@@ -62,6 +61,7 @@ export default function ShowEmployee() {
               
             
               <th scope="col">Update Action</th>
+              <th scope="col">Requisition</th>
               
             </tr>
           </thead>
@@ -91,6 +91,15 @@ export default function ShowEmployee() {
                     to={`/editsalesemployee/${user.user_id}`}
                   >
                      Update
+                   </Link>
+                   
+                          </td>
+                          <td>
+                            <Link
+                     className="btn btn-info mx-2"
+                    to={`/requisitionform/${user.user_id}`}
+                  >
+                     Request
                    </Link>
                           </td>
                        

@@ -1,42 +1,45 @@
+import axios from "axios";
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
-
+import { useNavigate, useParams } from "react-router-dom";
 function RequisitionForm() {
-  const [formData, setFormData] = useState({
-    itemName: '',
-    quantity: '',
-    reason: '',
-    neededDate: '',
-  });
+ 
   const { user_id } = useParams();
-  console.log("userid for requisition : "+user_id);
-  const [user, setUser] = useState({
-    id:user_id,
-    
-    
+  console.log("type of "+typeof(user_id));
+  const [formData, setFormData] = useState({
+    users_id:user_id,
+    itemName: "",
+    quantity: "",
+    reason: "",
+    neededDate: ""
   });
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  }
+  const { users_id,itemName,quantity,reason,neededDate } = formData;
 
-  const handleSubmit = (e) => {
+  let navigate = useNavigate();
+
+  console.log("userid for requisition : "+user_id);
+
+  const onInputChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+  const onSubmit = async (e) => {
     e.preventDefault();
-    // You can send the form data to your server or perform any other actions here
-    console.log(formData);
-  }
+    await axios.post("http://localhost:5000/api/contacts/requisition", formData);
+    console.log("Pass to home after request ");
+    navigate("/showemployee");
+   };
 
   return (
     <div>
       <h2 value={user_id}>Stock Requisition Form</h2>
-      <form onSubmit={handleSubmit} style={{marginLeft:"15%",padding:"30px", display: 'flex', flexDirection: 'row' }}>
+      <form onSubmit={(e) => onSubmit(e)}  style={{marginLeft:"15%",padding:"30px", display: 'flex', flexDirection: 'row' }}>
         <div>
           <label htmlFor="itemName">Item Name:</label>
           <input
             type="text"
-            id="itemName"
+            
             name="itemName"
-            value={formData.itemName}
-            onChange={handleChange}
+            value={itemName}
+            onChange={(e) => onInputChange(e)}
             required
           />
         </div>
@@ -44,20 +47,20 @@ function RequisitionForm() {
           <label htmlFor="quantity">Quantity:</label>
           <input
             type="number"
-            id="quantity"
+            
             name="quantity"
-            value={formData.quantity}
-            onChange={handleChange}
+            value={quantity}
+            onChange={(e) => onInputChange(e)}
             required
           />
         </div>
         <div>
           <label htmlFor="reason">Reason:</label>
           <textarea
-            id="reason"
+            
             name="reason"
-            value={formData.reason}
-            onChange={handleChange}
+            value={reason}
+            onChange={(e) => onInputChange(e)}
             required
           />
         </div>
@@ -65,15 +68,16 @@ function RequisitionForm() {
           <label htmlFor="neededDate">Needed Date:</label>
           <input
             type="date"
-            id="neededDate"
+            
             name="neededDate"
-            value={formData.neededDate}
-            onChange={handleChange}
+            value={neededDate}
+            onChange={(e) => onInputChange(e)}
             required
           />
         </div>
-        </form>
         <button type="submit">Submit</button>
+        </form>
+       
      
     </div>
   );

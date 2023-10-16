@@ -2,14 +2,12 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 
-import Badge from "@mui/material/Badge";
-import { GetCookie } from "./Cookiess";
 
-import MailIcon from "@mui/icons-material/Mail";
 import { SearchBar } from "./SearchBox";
 import { SearchResultsList } from "./SearchResult";
 import Sidebar from "./Sidebar";
-export default function ShowSalesEmployee() {
+
+export default function RequisitionRequestList() {
   const [results, setResults] = useState([]);
   const [users, setUsers] = useState([]);
 const [req,setReq]=useState([]);
@@ -21,32 +19,33 @@ const [req,setReq]=useState([]);
   }, []);
  
 
-  const getcookie = GetCookie();
-  const headers = {
-    "Content-Type": "application/json",
-    Authorization: `Bearer ${getcookie}`,
-  };
+//   const getcookie = GetCookie();
+//   const headers = {
+//     "Content-Type": "application/json",
+//     Authorization: `Bearer ${getcookie}`,
+//   };
   const loadUsers = async () => {
     const result = await axios.get(
-      "http://localhost:5000/api/contacts/private/getsales",
-      { headers }
+      "http://localhost:5000/api/contacts/requisitionrequestlist/get",
+      
     );
     console.log("After passing header");
     console.log(result);
     setUsers(result.data);
-    requestusers();
+    console.log(result);
+    //requestusers();
   };
-  const requestusers = async () => {
-    const result = await axios.get(
-      "http://localhost:5000/api/contacts/requisition/get"
-    );
-    console.log("After passing message ");
-   // alert(result.data);
-   setReq(result.data);
-    console.log(result.data);
+//   const requestusers = async () => {
+//     const result = await axios.get(
+//       "http://localhost:5000/api/contacts/requisition/get"
+//     );
+//     console.log("After passing message ");
+//    // alert(result.data);
+//    setReq(result.data);
+//    console.log(result.data);
     
    
-  };
+//   };
 
   const deleteUser = async (id) => {
     await axios.delete(`http://localhost:5000/api/contacts/${id}`);
@@ -55,6 +54,10 @@ const [req,setReq]=useState([]);
   const [user, setUser] = useState({
     user_id: "",
     user_name: "",
+    item_name:"",
+    quantity:"",
+    reason:"",
+    needed_date:""
   });
 
   return (
@@ -64,32 +67,27 @@ const [req,setReq]=useState([]);
     >
       <Sidebar />
    
-      <Badge  badgeContent={req} style={{height:"40px" }}   color="secondary">
-      <Link
-                      className="btn btn-info mx-2"
-                      to={`/requisitionrequestlist`}
-                      
-                    > 
-                     <MailIcon color="action" />
-                     Stock Request
-                    </Link>
-      </Badge>
+      
       <div style={{ display: "flex", flexDirection: "column" }}>
         <SearchBar setResults={setResults} />
         {results && results.length > 0 && (
           <SearchResultsList results={results} />
         )}
 
-        <div className="py-4" style={{ marginRight: "100px" }}>
+        <div className="py-4" style={{ marginRight: "00px" }}>
           <table className="table border shadow">
             <thead>
               <tr>
                 <th scope="col">Serial</th>
                 <th scope="col">User ID</th>
                 <th scope="col">User Name</th>
-
-                <th scope="col">Update Action</th>
-                <th scope="col">Delete Action</th>
+                <th scope="col">Item Name</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Reason</th>
+                <th scope="col">Needed Date</th>
+                <th scope="col">Edit Action</th>
+                <th scope="col">Accept Action</th>
+                <th scope="col">Cancel Action</th>
               </tr>
             </thead>
             <tbody>
@@ -100,6 +98,18 @@ const [req,setReq]=useState([]);
                   </th>
                   <td>{user.user_id}</td>
                   <td>{user.user_name}</td>
+                  <td>{user.item_name}</td>
+                  <td>{user.quantity}</td>
+                  <td>{user.reason}</td>
+                  <td>{user.needed_date}</td>
+                  <td>
+                    <Link
+                      className="btn btn-info mx-2"
+                      to={`/editrequisitionrequest/${user.user_id}`}
+                    >
+                      Update
+                    </Link>
+                  </td>
 
                   {/* <td>
                             <button
@@ -109,20 +119,21 @@ const [req,setReq]=useState([]);
                      View
                    </button>
                           </td> */}
+               
                   <td>
-                    <Link
+                    <button
                       className="btn btn-info mx-2"
-                      to={`/edituser/${user.user_id}`}
+                      onClick={() => deleteUser(user.user_id)}
                     >
-                      Update
-                    </Link>
+                      Accept
+                    </button>
                   </td>
                   <td>
                     <button
                       className="btn btn-danger mx-2"
                       onClick={() => deleteUser(user.user_id)}
                     >
-                      Delete
+                      Cancel
                     </button>
                   </td>
                 </tr>

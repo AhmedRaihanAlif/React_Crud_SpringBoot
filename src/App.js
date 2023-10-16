@@ -2,11 +2,13 @@ import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import Navbar from "./layout/Navbar";
+import EditRequisitionRequest from "./pages/EditRequisitionRequest";
 import FormDialog from "./pages/FormDialog";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import LoginApp from "./pages/LoginApp";
 import RequisitionForm from "./pages/RequisitionForm";
+import RequisitionRequestList from "./pages/RequisitionRequestList";
 import SalesHome from "./pages/SalesHome";
 import ShowEmployee from "./pages/ShowEmployee";
 import ShowSalesEmployee from "./pages/ShowSalesEmployee";
@@ -38,6 +40,8 @@ function App() {
           <Route exact path="/edituser/:user_id" element={<EditUser />} />
           <Route exact path="/viewuser/:id" element={<ViewUser />} />
           <Route exact path="/formdialog" element={<FormDialog />} />
+          <Route exact path="/editrequisitionrequest/:user_id" element={<EditRequisitionRequest />} />
+          <Route exact path="/requisitionrequestlist" element={<RequisitionRequestList />} />
           <Route exact path="/requisitionform/:user_id" element={<RequisitionForm />} />
         </Routes>
       </Router>

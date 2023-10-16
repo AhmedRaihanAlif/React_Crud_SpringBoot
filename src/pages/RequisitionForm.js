@@ -10,9 +10,10 @@ function RequisitionForm() {
     itemName: "",
     quantity: "",
     reason: "",
-    neededDate: ""
+    neededDate: "",
+    status:"pending"
   });
-  const { users_id,itemName,quantity,reason,neededDate } = formData;
+  const { users_id,itemName,quantity,reason,neededDate ,status } = formData;
 
   let navigate = useNavigate();
 
@@ -23,7 +24,7 @@ function RequisitionForm() {
   };
   const onSubmit = async (e) => {
     e.preventDefault();
-    await axios.post("http://localhost:5000/api/contacts/requisition", formData);
+    await axios.post("http://localhost:5000/api/contacts/requisition/post", formData);
     console.log("Pass to home after request ");
     navigate("/showemployee");
    };

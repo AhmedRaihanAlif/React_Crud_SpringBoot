@@ -13,7 +13,7 @@ export default function EditRequisitionRequest() {
     item_name:"",
     quantity:"",
     reason:"",
-    date:""
+    needed_date:""
     
   });
 
@@ -29,15 +29,16 @@ export default function EditRequisitionRequest() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    await axios.put(`http://localhost:5000/api/contacts/${user_id}`, user);
-    navigate("/");
+    await axios.put(`http://localhost:5000/api/contacts/requisitionrequestlistper/editper/${user_id}`, user);
+    navigate("/requisitionrequestlist");
   };
 
   const loadUser = async () => {
     const result = await axios.get(`http://localhost:5000/api/contacts/requisitionrequestlistper/getper/${user_id}`);
     // console.log("heioioi"+JSON.stringify(result.data[0].user_name));
-     setUser({ ...user, user_name: result.data[0].user_name,item_name:result.data[0].item_name,quantity:result.data[0].quantity,reason:result.data[0].reason,date:result.data[0].date});
-  };
+     setUser({ ...user, user_name: result.data[0].user_name,item_name:result.data[0].item_name,quantity:result.data[0].quantity,reason:result.data[0].reason,needed_date:result.data[0].date});
+    
+    };
 
   return (
     <div className="container">
@@ -54,7 +55,7 @@ export default function EditRequisitionRequest() {
                 type={"text"}
                 className="form-control"
                 placeholder="Enter your new name"
-                name="name"
+                name="user_id"
                 value={user.id}
             
               />
@@ -83,7 +84,7 @@ export default function EditRequisitionRequest() {
                 placeholder="Enter your new quantity"
                 name="quantity"
                 value={user.quantity}
-            
+                onChange={(e) => setUser({ ...user, quantity: e.target.value })}
               />
             </div>
 
@@ -94,7 +95,7 @@ export default function EditRequisitionRequest() {
               <input
                 type={"text"}
                 className="form-control"
-                placeholder="Enter your new name"
+                
                 name="reason"
                 value={user.reason}
             
@@ -107,10 +108,10 @@ export default function EditRequisitionRequest() {
               <input
                 type={"text"}
                 className="form-control"
-                placeholder="Enter your new name"
-                name="date"
-                value={user.date}
-            
+                placeholder="Enter your new date"
+                name="needed_date"
+                value={user.needed_date}
+                onChange={(e) => setUser({ ...user, needed_date: e.target.value })}
               />
             </div>
 

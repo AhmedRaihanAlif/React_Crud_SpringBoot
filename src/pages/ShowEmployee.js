@@ -1,3 +1,5 @@
+import MailIcon from "@mui/icons-material/Mail";
+import Badge from "@mui/material/Badge";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
@@ -10,7 +12,7 @@ export default function ShowEmployee() {
   const [users, setUsers] = useState([]);
 
   const { id } = useParams();
-
+var userId;
   useEffect(() => {
     loadUsers();
   }, []);
@@ -22,10 +24,21 @@ export default function ShowEmployee() {
     };
   const loadUsers = async () => {
     const result = await axios.get("http://localhost:5000/api/contacts/private/getsales",{headers});
-    console.log("After passing header");
-    console.log(result);
+    // console.log("After passing header");
+    // console.log(result.data.userId);
+    // userId=result.data.userId;
     setUsers(result.data);
+    //console.log("userId"+userId);
   };
+  // const getUsers = async () => {
+  //   const result = await axios.get("http://localhost:5000/api/contacts/getUsers");
+   
+  //   // console.log("After passing header");
+  //   // console.log(result.data.userId);
+  //   // userId=result.data.userId;
+  //   // setUsers(result.data.rows);
+  //   // console.log("userId"+userId);
+  // };
 
   const deleteUser = async (id) => {
     await axios.delete(`http://localhost:5000/api/contacts/${id}`);
@@ -62,6 +75,7 @@ export default function ShowEmployee() {
             
               <th scope="col">Update Action</th>
               <th scope="col">Requisition</th>
+              <th scope="col">Notifications</th>
               
             </tr>
           </thead>
@@ -101,6 +115,18 @@ export default function ShowEmployee() {
                   >
                      Request
                    </Link>
+                          </td>
+                          <td>
+                          <Badge  badgeContent={5} style={{height:"40px" }}   color="secondary">
+      <Link
+                      className="btn btn-info mx-2"
+                      to={`/requisitionrequestlist`}
+                      
+                    > 
+                     <MailIcon color="action" />
+                     Stock Request
+                    </Link>
+      </Badge>
                           </td>
                        
                             
